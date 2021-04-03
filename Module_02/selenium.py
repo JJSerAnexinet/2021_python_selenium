@@ -11,16 +11,16 @@ def get_chrome_path() -> Path:
     #1. Root = path del chrome driver
     #2. une ambos path "proyecto + chrome"
     root = get_project_root()
-    return root.joinpath('drivers','chromedriver')
+    return root.joinpath('drivers', 'chromedriver')
 
-def navigate_2URL(url):
+def navigate_2url(url):
     driver.find_element_by_link_text(url).click()
     print(driver.page_source.count('Selenium'))
 
 driver = webdriver.Chrome(executable_path=get_chrome_path())
 
 driver.get('https://www.selenium.dev')
-navigate_2URL('Downloads')
-navigate_2URL('Projects')
-navigate_2URL('Support')
-navigate_2URL('Blog')
+navigate_2url('Downloads')
+navigate_2url('Projects')
+navigate_2url('Support')
+navigate_2url('Blog')
