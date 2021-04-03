@@ -1,26 +1,17 @@
-from pathlib import Path
-from selenium import webdriver
+"""Navigate selenium page."""
+from common.webdriver_factory import get_driver
 
-def get_project_root() -> Path:
-    """Get project root path."""
-    # 1. Absolute Path file of the project
-    return Path(__file__).parent.parent
 
-def get_chrome_path() -> Path:
-    """Get chrome driver path."""
-    #1. Root = path del chrome driver
-    #2. une ambos path "proyecto + chrome"
-    root = get_project_root()
-    return root.joinpath('drivers', 'chromedriver')
+driver = get_driver('chrome')
+driver.get('https://www.selenium.dev/')
 
-def navigate_2url(url):
-    driver.find_element_by_link_text(url).click()
-    print(driver.page_source.count('Selenium'))
-
-driver = webdriver.Chrome(executable_path=get_chrome_path())
-
-driver.get('https://www.selenium.dev')
-navigate_2url('Downloads')
-navigate_2url('Projects')
-navigate_2url('Support')
-navigate_2url('Blog')
+for link in ['Downloads', 'Projects', 'Support', 'Blog']:
+    element = driver.find_element_by_link_text(link)
+    print('-' * 80)
+    print(f'Hyperlink text: {element.text}')
+    print(f'Hyperlink displayed: {element.is_displayed()}')
+    print(f'Hyperlink enabled: {element.is_enabled()}')
+    print(f'Hyperlink selected: {element.is_selected()}')
+    element.click()
+    print(f"Selenium Count: {driver.page_source.count('Selenium')}")
+driver.quit()
