@@ -42,7 +42,7 @@ if __name__ == '__main__':
     # Search
     search(my_wait, 'Python')
 
-    # Show results info
+    # Print Results
     print_results(my_wait)
 
     # Quit
