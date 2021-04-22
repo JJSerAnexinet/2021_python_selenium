@@ -1,4 +1,4 @@
-"""Automate play tic tac toe"""
+"""juego de gato"""
 import random
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.android.webdriver import WebDriver
@@ -11,7 +11,7 @@ from selenium.webdriver.common.by import By
 
 
 def select_empty_box(wait: WebDriverWait):
-    """Select an empty box"""
+
     try:
         locator = (By.CSS_SELECTOR, ".square")
         boxes = wait.until(EC.visibility_of_all_elements_located(locator))
@@ -28,7 +28,7 @@ def select_empty_box(wait: WebDriverWait):
 
 
 def winner(wait: WebDriverWait):
-    """Verify if we have a winner."""
+
     try:
         locator = (By.CLASS_NAME, 'restart')
         wait.until(EC.visibility_of_all_elements_located(locator))
@@ -38,7 +38,7 @@ def winner(wait: WebDriverWait):
 
 
 def print_game_stats(wait: WebDriverWait):
-    """Print game stats"""
+
     player_1_score_loc = (By.CSS_SELECTOR, '.player1 .score')
     player_1_score = wait.until(EC.visibility_of_element_located(player_1_score_loc))
 
@@ -62,3 +62,6 @@ if __name__ == '__main__':
     print_game_stats(my_wait)
 
     my_driver.quit()
+
+
+    """Para leer solucion -> https://www.geeksforgeeks.org/backtracking-introduction/"""
