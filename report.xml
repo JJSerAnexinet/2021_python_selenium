@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="3" time="0.042" timestamp="2021-04-21T21:07:11.435711" hostname="Jesuss-MacBook-Pro-299.local"><testcase classname="Module_05.test_hello_world" name="test_one" time="0.001" /><testcase classname="Module_05.test_hello_world" name="test_two" time="0.000" /><testcase classname="Module_05.test_hello_world" name="test_tres" time="0.001"><failure message="Exception: Fail">def test_tres():
+        """Test case demo 3 """
+        print("Third test case")
+&gt;       raise Exception ('Fail')
+E       Exception: Fail
+
+Module_05/test_hello_world.py:15: Exception</failure></testcase></testsuite></testsuites>
