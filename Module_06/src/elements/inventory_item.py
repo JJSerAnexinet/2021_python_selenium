@@ -1,9 +1,9 @@
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support.wait import WebDriverWait
-from module_06.src.elements.base_page_element import BasePageElement
-from module_06.src.locators.inventory_item import InventoryItemLoc
-from module_06.src.mixin.InventoryItemMixin import InventoryItemMixin
-from module_06.src.pages.inventory_details import InventoryDetailsPage
+from Module_06.src.elements.base_page_element import BasePageElement
+from Module_06.src.locators.inventory_item import InventoryItemLoc
+from Module_06.src.mixin.InventoryItemMixin import InventoryItemMixin
+from Module_06.src.pages.inventory_details import InventoryDetailsPage
 
 
 class InventoryItem(InventoryItemMixin):
