@@ -1,10 +1,9 @@
 """Test cases for inventory item"""
-import pytest
-
 from Module_06.src.elements.inventory_item import InventoryItem
 from Module_06.src.pages.inventory import InventorySortOptions
 from Module_06.src.pages.login import LoginPage
 from Module_06.tests.common.test_base import TestBase
+
 
 _DEF_USER = 'standard_user'
 
@@ -12,10 +11,8 @@ _DEF_PASSWORD = 'secret_sauce'
 
 VALID_PRICES = ['$29.99', '$9.99', '$15.99', '$49.99', '$7.99', '$15.99']
 
+
 class TestInventory(TestBase):
-    @pytest.mark.sanity
-    @pytest.mark.regression
-    @pytest.mark.inventory
 
     def test_prices(self):
         """Test inventory prices"""
@@ -31,33 +28,14 @@ class TestInventory(TestBase):
             print(item.get_price())
             print('*' * 80)
 
-    @pytest.mark.sanity
-    @pytest.mark.regression
-    @pytest.mark.inventory
-
-    def test_items_name(self):
-        """Test inventory names"""
-        login = LoginPage(self.driver)
-        login.open()
-        inventory = login.login(_DEF_USER, _DEF_PASSWORD)
-        for index, item in enumerate(inventory.products):
-            item: InventoryItem
-            assert item.get_title() == TITLE_DATA[index], f'Title for item {index} should be {TITLE_DATA[index]}'
-            print('\n')
-
-    @pytest.mark.regression
-    @pytest.mark.inventory
-
     def test_label(self):
         """Test production label."""
         login = LoginPage(self.driver)
         login.open()
         inventory = login.login(_DEF_USER, _DEF_PASSWORD)
-        assert inventory.get_label() == 'Products', 'Inventory page label should be Products'
-
-    @pytest.mark.sanity
-    @pytest.mark.regression
-    @pytest.mark.inventory
+        assert inventory.get_label() == 'PRODUCTS', 'Inventory page label should be Products'
+        inventory.display_menu()
+        inventory.click_logout()
 
     def test_sort(self):
         """Test sort products"""
@@ -69,14 +47,10 @@ class TestInventory(TestBase):
             inventory.sort_by(option)
             inventory.get_sort_value() == option.value, f'Default sort should be {option.value}'
 
-    @pytest.mark.regression
-    @pytest.mark.inventory
-
-    def test_add_remove(self):
-        """This is to test items functionality on catalog"""
+    def test_logout(self):
+        """Test logout"""
         login = LoginPage(self.driver)
         login.open()
-        inventory_page = login.login(_DEF_USER, _DEF_PASSWORD)
-        for item in inventory_page.products:
-            item.add_to_cart()
-            item.remove_from_cart()
+        inventory = login.login(_DEF_USER, _DEF_PASSWORD)
+        inventory.display_menu()
+        inventory.click_logout()
